@@ -1,0 +1,20 @@
+import math
+
+def calculate_statistical_variance(data):
+    """
+    Calculates the variance and mean of a scientific dataset.
+    Useful for filtering experimental noise in chemistry data.
+    """
+    n = len(data)
+    if n < 2:
+        return None
+        
+    mean_val = sum(data) / n
+    variance = sum((x - mean_val) ** 2 for x in data) / (n - 1)
+    
+    return {"mean": round(mean_val, 4), "variance": round(variance, 4)}
+
+if __name__ == "__main__":
+    lab_measurements = [14.2, 15.1, 14.8, 13.9, 15.5, 14.6]
+    results = calculate_statistical_variance(lab_measurements)
+    print("Statistical Analysis:", results)
