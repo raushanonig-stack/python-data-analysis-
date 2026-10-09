@@ -1,0 +1,26 @@
+import math
+
+class DataAnalyzer:
+    """Statistical and numerical toolkit for STEM experimental data."""
+    def __init__(self, data_points):
+        self.data = data_points
+
+    def get_summary(self):
+        if not self.data:
+            return {}
+        n = len(self.data)
+        mean = sum(self.data) / n
+        variance = sum((x - mean) ** 2 for x in self.data) / (n - 1) if n > 1 else 0
+        std_dev = math.sqrt(variance)
+        return {
+            "count": n,
+            "mean": round(mean, 4),
+            "std_dev": round(std_dev, 4),
+            "min": min(self.data),
+            "max": max(self.data)
+        }
+
+if __name__ == "__main__":
+    test_data = [12.4, 14.5, 13.8, 15.2, 14.9, 13.1, 16.0]
+    analyzer = DataAnalyzer(test_data)
+    print("Summary Metrics:", analyzer.get_summary())
